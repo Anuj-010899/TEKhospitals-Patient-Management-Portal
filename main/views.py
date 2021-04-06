@@ -6,7 +6,7 @@ def home(request):
     patients=Patients.objects.all()
     return render(request,'home.html',{'patients':patients})
 
-def addUser(request):
+def addUserInfo(request):
     if request.method == 'POST':
         name=request.POST['name'].strip()
         dob=request.POST['dob']
@@ -20,7 +20,7 @@ def addUser(request):
             messages.success(request,'Patient has been registered successfully')    
     return render(request,'add.html')
 
-def findUser(request):
+def fetchUserInfo(request):
     phone=request.GET.get('phone')
     foundPatients=""
     if(phone):
