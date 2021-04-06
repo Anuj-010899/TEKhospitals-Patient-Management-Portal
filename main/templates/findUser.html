@@ -1,0 +1,60 @@
+
+    {%extends 'navbar.html'%}
+    {%block content%}
+
+    <div>
+    <div class="container my-3">
+        <h1 style="font-weight:800 ;color:rgba(0, 0, 255, 0.719);font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align:center">
+            Search Patient By Unique ID(Phone Number)</h1>
+    </div>
+
+    <div style="margin: auto; width:50%; border:black 2px solid; border-radius:30px; padding:2% " class="my-4">
+        <form action="" method="get">
+            <label for="phone">Enter Patient's Unique ID(Phone Number)</label>
+            <input type="text" class="form-control my-3" id="phone" name="phone" placeholder="Enter Patient Mobile Number">
+            <button class="btn btn-success" type="submit">Find</button>
+        </form>
+        {%if foundPatients%}
+        <h4 class="my-3">Search Results: </h3>
+        {% for patient in foundPatients%}
+        <div class="card text-dark  mb-3 my-3" style="margin: auto;max-width: auto; background-color:rgba(116, 245, 223, 0.719); ">
+            <div class="card-header">Unique ID: {{patient.phone}}</div>
+            <div class="card-body">
+              <p class="card-text">Patient Name:&nbsp;{{patient.name}}</p>
+              <p class="card-text">Patient DOB: &nbsp;{{patient.dob}}</p>
+              <p class="card-text">Patient Email: &nbsp;{{patient.email}}</p>
+              
+            </div>
+          </div>
+         {%endfor%}
+         {% elif  foundPatients.count == 0 %}
+         <div class="card text-white bg-danger  mb-3 my-3" style="margin: auto;max-width: auto; background-color:rgba(116, 245, 223, 0.719); ">
+           
+            <div class="card-body">
+              <p class="card-text">Hey Buddy! No Patient data found for unique ID: {{phone}} </p>
+              <p class="card-text">Please Register By Clicking the Button below</p>
+              <a href="/commoninfo/add"><button class="btn btn-dark">Register Now</button></a>
+              
+            </div>
+          </div>
+        {% endif%}
+
+    </div>
+</div>
+
+    
+<style>
+    label{
+        font-size:larger;
+        font-weight:bold;
+        color:rgb(201, 109, 109)
+    }
+    card-header{
+        color: white;
+    }
+    p{
+        font-weight: bold;
+        font-size:large
+    }
+</style>
+{% endblock %}
